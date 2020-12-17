@@ -1,16 +1,14 @@
 import React from "react";
-import PropTypes from "prop-types";
 
 function Item(props) {
   const { list } = props;
-  console.log(list);
   const elmItem = list.map((todo, index) => {
     return (
       <tr key={index}>
         <td>{index + 1}</td>
         <td>{todo.title}</td>
         <td className="text-center">
-          <span className="label label-success">Kích Hoạt</span>
+          <span className="label label-success">{todo.status}</span>
         </td>
         <td className="text-center">
           <button type="button" className="btn btn-warning">

@@ -3,27 +3,15 @@ import PropTypes from "prop-types";
 import { v4 as uuidv4 } from "uuid";
 import Item from "../Item/Item";
 
-function List() {
+function List(props) {
   const [list, setList] = useState([]);
-  useEffect(() => {
-	const listLocalStorage = localStorage.getItem("todolist")
-    ? localStorage.getItem("todolist")
-    : [
-        {
-          id: uuidv4(),
-          title: "Lesson 1",
-        },
-        {
-          id: uuidv4(),
-          title: "Lesson 2",
-        },
-        {
-          id: uuidv4(),
-          title: "Lesson 3",
-        },
-      ];
-	setList(listLocalStorage);
-  }, []);  
+  const { todo } = props;
+  todo.id = uuidv4();
+  const listLocalStorage = localStorage.getItem("todolist") ? localStorage.getItem("todolist") : [];
+  const newList = [...listLocalStorage, todo];
+  useEffect(()=>{
+    
+  },[list]);
   return (
     <>
       <div className="row mt-15">
@@ -62,7 +50,7 @@ function List() {
 }
 
 Item.propTypes = {
-	list: PropTypes.array
+  list: PropTypes.array,
 };
 
 export default List;

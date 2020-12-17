@@ -6,11 +6,18 @@ import React, { useState } from 'react';
 
 function App() {
   const [toggle, setToggle] = useState(true);
+  const [todo, setTodo] = useState({
+    title: "",
+    status: "0",
+  });
   function onToggleForm($toggle) {
     setToggle($toggle);
   }
   function onCloseForm() {
     setToggle(false);
+  }
+  function onSubmit(todo) {
+    setTodo(todo);
   }
   return (
     <div className="container">
@@ -20,7 +27,7 @@ function App() {
       </div>
       <div className="row">
         {/* Form Add */}
-        {toggle ? <Add onCloseForm={onCloseForm} /> : ""}
+        {toggle ? <Add onSubmit={onSubmit} onCloseForm={onCloseForm} /> : ""}
         {/* Form Add */}
         <div className="col-xs-8 col-sm-8 col-md-8 col-lg-8">
           {/* Button Add */}
@@ -30,7 +37,7 @@ function App() {
           <Fillter></Fillter>
           {/* Filter */}
           {/* List */}
-          <List></List>
+          <List todo={todo}></List>
           {/* List */}
         </div>
       </div>

@@ -1,16 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
-function ButtonAdd() {
-	function handleCloseForm() {
-		console.log("aaaa");
-	}
-	return (
+function ButtonAdd(props) {
+  const { oldToggle } = props;
+  function handleToggleForm() {
+    props.onToggleForm(!oldToggle)
+  }
+  return (
     <>
       <button
         type="button"
         className="btn btn-primary"
-        onClick={handleCloseForm()}
+        onClick={() => handleToggleForm()}
       >
         <span className="fa fa-plus mr-5"></span>Thêm Công Việc
       </button>

@@ -2,6 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 
 function Add(props) {
+  function handleCloseForm() {
+    props.onCloseForm();
+  }
   return (
     <>
       <div className="col-xs-4 col-sm-4 col-md-4 col-lg-4">
@@ -28,7 +31,7 @@ function Add(props) {
                   Thêm
                 </button>
                 &nbsp;
-                <button type="submit" className="btn btn-danger">
+                <button type="submit" className="btn btn-danger" onClick={() => handleCloseForm()}>
                   Hủy Bỏ
                 </button>
               </div>

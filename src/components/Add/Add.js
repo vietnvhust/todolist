@@ -23,7 +23,7 @@ function Add(props) {
   }
   return (
     <>
-      <div className="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+      <div className="col-xs-12">
         <div className="panel panel-warning">
           <div className="panel-heading">
             <h3 className="panel-title">Thêm Công Việc</h3>

@@ -1,14 +1,39 @@
-import React, { useState } from "react";
-
+import React, { useState, useEffect } from "react";
+import { v4 as uuidv4 } from "uuid";
 function Add(props) {
+  const {todoEdit}=props;
   const [todo, setTodo] = useState({
-    title: '',
-    status: '0'
+    id: "",
+    title: "",
+    status: '0',
   });
+  useEffect(() => {
+    setTodo(todoEdit);
+  }, [todoEdit]);
+  useEffect(() => {
+    return () => {
+      setTodo({
+        id: "",
+        title: "",
+        status: "0",
+      });
+    }
+  }, [])
   function handleCloseForm() {
     props.onCloseForm();
+    
   }
   function onSubmit(e) {
+    if (
+      todoEdit.id === "" ||
+      todoEdit.id === "undefined" ||
+      todoEdit.id === null ||
+      todoEdit.id === undefined
+    ) {
+      todo.id = uuidv4();
+    } else {
+      todo.id = todoEdit.id;
+    }
     props.onSubmit(todo);
     e.preventDefault();
   }
@@ -20,7 +45,7 @@ function Add(props) {
       ...todo,
       [name]: value,
     });
-  }
+  }  
   return (
     <>
       <div className="col-xs-12">
@@ -37,6 +62,7 @@ function Add(props) {
                   className="form-control"
                   onChange={(e) => handleChange(e)}
                   name="title"
+                  value={todo.title}
                 />
               </div>
               <label>Trạng Thái :</label>
@@ -45,16 +71,14 @@ function Add(props) {
                 required="required"
                 onChange={(e) => handleChange(e)}
                 name="status"
+                value={todo.status}
               >
                 <option value="1">Kích Hoạt</option>
                 <option value="0">Ẩn</option>
               </select>
               <br />
               <div className="text-center">
-                <button
-                  type="submit"
-                  className="btn btn-warning"
-                >
+                <button type="submit" className="btn btn-warning">
                   Thêm
                 </button>
                 &nbsp;

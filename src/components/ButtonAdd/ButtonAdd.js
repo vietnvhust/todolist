@@ -1,9 +1,9 @@
 import React from 'react'
 import { connect } from "react-redux";
 import * as actions from "./../../actions/index";
-function ButtonAdd() {
+function ButtonAdd(props) {
   function handleToggleForm() {
-    console.log('Toogle Form !');
+    props.handleToggleForm();
   }
   return (
     <>
@@ -21,7 +21,7 @@ function ButtonAdd() {
 const mapDispatchToProps = (dispatch) => {
   return {
     handleToggleForm: () => {
-      dispatch(actions.toogleForm);
+      dispatch(actions.toogleForm());
     },
   };
 };

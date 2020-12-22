@@ -24,7 +24,7 @@ function App() {
   function onSubmit(todo) {
     let newList;
     const index = list.findIndex((x) => x.id === todo.id);
-    if (index > 0) {
+    if (index >= 0) {
       list[index]["title"] = todo.title;
       list[index]["status"] = todo.status;
       newList = [...list];
@@ -33,6 +33,11 @@ function App() {
     }
     localStorage.setItem("getList", JSON.stringify(newList));
     setList(newList);
+    onCloseForm();
+    setTodoEdit({
+      title: "",
+      status: "0",
+    });
   }
   function onDelete(id) {
     const index = list.findIndex((x) => x.id === id);

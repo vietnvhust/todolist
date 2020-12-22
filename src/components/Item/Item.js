@@ -1,5 +1,4 @@
 import React from "react";
-
 function Item(props) {
   function handleDeleteItem(id){
     props.onDelete(id);

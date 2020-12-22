@@ -1,5 +1,6 @@
 {
   "name": "todolist",
+  "homepage": "https://webdonganh.com/todolist",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -36,6 +37,8 @@
     ]
   },
   "devDependencies": {
+    "react-redux": "^7.2.2",
+    "redux": "^4.0.5",
     "uuid": "^8.3.2"
   }
 }

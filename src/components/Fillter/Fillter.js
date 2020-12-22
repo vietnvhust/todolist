@@ -1,11 +1,8 @@
 import React, { useState } from "react";
-import PropTypes from 'prop-types'
-
 function Fillter(props) {
   const [searchTitle, setSearchTitle] = useState("")
   function handleChangeSearchTitle(e){
     const target = e.target;
-    const name = target.name;
     const value = target.name === "checkbox" ? target.checked : target.value;
     setSearchTitle(value);
   }
@@ -84,10 +81,6 @@ function Fillter(props) {
       </div>
     </>
   );
-}
-
-Fillter.propTypes = {
-
 }
 
 export default Fillter

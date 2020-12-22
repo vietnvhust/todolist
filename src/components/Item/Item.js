@@ -1,4 +1,6 @@
 import React from "react";
+import { connect } from "react-redux";
+import * as actions from "./../../actions/index";
 function Item(props) {
   function handleDeleteItem(id){
     props.onDelete(id);
@@ -9,8 +11,8 @@ function Item(props) {
   function handleChangeStatus(id) {
     props.onStatus(id);
   }
-  const { list } = props;
-  const elmItem = list.map((todo, index) => {
+  const { redux_todos } = props;
+  const elmItem = redux_todos.map((todo, index) => {
     return (
       <tr key={index}>
         <td>{index + 1}</td>
@@ -61,4 +63,9 @@ Item.defaultProps = {
 
 Item.propTypes = {};
 
-export default Item;
+const mapStateToProps = (state) => {
+  return {
+    redux_todos: state.todos,
+  };
+};
+export default connect(mapStateToProps, null)(Item);

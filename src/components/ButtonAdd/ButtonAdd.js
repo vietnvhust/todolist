@@ -1,16 +1,16 @@
 import React from 'react'
-
-function ButtonAdd(props) {
-  const { oldToggle } = props;
+import { connect } from "react-redux";
+import * as actions from "./../../actions/index";
+function ButtonAdd() {
   function handleToggleForm() {
-    props.onToggleForm(!oldToggle)
+    console.log('Toogle Form !');
   }
   return (
     <>
       <button
         type="button"
         className="btn btn-primary"
-        onClick={() => handleToggleForm()}
+        onClick={handleToggleForm()}
       >
         <span className="fa fa-plus mr-5"></span>Thêm Công Việc
       </button>
@@ -18,9 +18,12 @@ function ButtonAdd(props) {
   );
 }
 
-ButtonAdd.propTypes = {
+const mapDispatchToProps = (dispatch) => {
+  return {
+    handleToggleForm: () => {
+      dispatch(actions.toogleForm);
+    },
+  };
+};
 
-}
-
-export default ButtonAdd
-
+export default connect(null, mapDispatchToProps)(ButtonAdd);

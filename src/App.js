@@ -3,8 +3,12 @@ import ButtonAdd from "./components/ButtonAdd/ButtonAdd";
 import Fillter from "./components/Fillter/Fillter";
 import List from "./components/List";
 import React, { useState, useEffect } from "react";
+import { connect } from "react-redux";
+import * as actions from "./actions/index";
 
-function App() {
+function App(props) {
+  const { redux_toggle } = props;
+  console.log(redux_toggle);
   const [toggle, setToggle] = useState(true);
   const [list, setList] = useState([]);
   const [todoEdit, setTodoEdit] = useState({
@@ -121,7 +125,7 @@ function App() {
       </div>
       <div className="row">
         {/* Form Add */}
-        {toggle ? (
+        {redux_toggle ? (
           <Add
             onSubmit={onSubmit}
             onCloseForm={onCloseForm}
@@ -155,4 +159,9 @@ function App() {
   );
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    redux_toggle: state.toggle,
+  };
+};
+export default connect(mapStateToProps, null)(App);

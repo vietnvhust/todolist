@@ -2,15 +2,15 @@ import React from 'react'
 import { connect } from "react-redux";
 import * as actions from "./../../actions/index";
 function ButtonAdd(props) {
-  function handleToggleForm() {
-    props.handleToggleForm();
+  function onToggleForm() {
+    props.onToggleForm();
   }
   return (
     <>
       <button
         type="button"
         className="btn btn-primary"
-        onClick={handleToggleForm()}
+        onClick={()=>onToggleForm()}
       >
         <span className="fa fa-plus mr-5"></span>Thêm Công Việc
       </button>
@@ -20,7 +20,7 @@ function ButtonAdd(props) {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    handleToggleForm: () => {
+    onToggleForm: () => {
       dispatch(actions.toogleForm());
     },
   };

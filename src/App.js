@@ -7,8 +7,7 @@ import { connect } from "react-redux";
 import * as actions from "./actions/index";
 
 function App(props) {
-  const { redux_toggle } = props;
-  console.log(redux_toggle);
+  console.log(props.redux_toogle);
   const [toggle, setToggle] = useState(true);
   const [list, setList] = useState([]);
   const [todoEdit, setTodoEdit] = useState({
@@ -21,6 +20,9 @@ function App(props) {
       title: "",
       status: "0",
     });
+  }
+  function onToggleForm(){
+    props.onToggleForm();
   }
   function onCloseForm() {
     setToggle(false);
@@ -125,7 +127,7 @@ function App(props) {
       </div>
       <div className="row">
         {/* Form Add */}
-        {redux_toggle ? (
+        {props.redux_toogle ? (
           <Add
             onSubmit={onSubmit}
             onCloseForm={onCloseForm}
@@ -161,7 +163,7 @@ function App(props) {
 
 const mapStateToProps = (state) => {
   return {
-    redux_toggle: state.toggle,
+    redux_toogle:state.toogle,
   };
 };
 export default connect(mapStateToProps, null)(App);

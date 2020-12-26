@@ -51,11 +51,7 @@ function Add(props) {
       <div className="col-xs-12">
         <div className="panel panel-warning">
           <div className="panel-heading">
-            {todoEdit.id === "" || todoEdit.id === undefined ? (
-              <h3 className="panel-title">Thêm Công Việc</h3>
-            ) : (
-              <h3 className="panel-title">Chỉnh sửa Công Việc</h3>
-            )}
+            <h3 className="panel-title">Thêm Công Việc</h3>
           </div>
           <div className="panel-body">
             <form onSubmit={(e) => onSubmit(e)}>
@@ -83,9 +79,7 @@ function Add(props) {
               <br />
               <div className="text-center">
                 <button type="submit" className="btn btn-warning">
-                  {todoEdit.id === "" || todoEdit.id === undefined
-                    ? "Thêm"
-                    : "Chỉnh sửa"}
+                  Thêm
                 </button>
                 &nbsp;
                 <button

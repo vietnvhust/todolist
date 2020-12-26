@@ -3,11 +3,8 @@ import ButtonAdd from "./components/ButtonAdd/ButtonAdd";
 import Fillter from "./components/Fillter/Fillter";
 import List from "./components/List";
 import React, { useState, useEffect } from "react";
-import { connect } from "react-redux";
-import * as actions from "./actions/index";
 
-function App(props) {
-  console.log(props.redux_toogle);
+function App() {
   const [toggle, setToggle] = useState(true);
   const [list, setList] = useState([]);
   const [todoEdit, setTodoEdit] = useState({
@@ -21,16 +18,13 @@ function App(props) {
       status: "0",
     });
   }
-  function onToggleForm(){
-    props.onToggleForm();
-  }
   function onCloseForm() {
     setToggle(false);
   }
   function onSubmit(todo) {
     let newList;
     const index = list.findIndex((x) => x.id === todo.id);
-    if (index >= 0) {
+    if (index > 0) {
       list[index]["title"] = todo.title;
       list[index]["status"] = todo.status;
       newList = [...list];
@@ -39,11 +33,6 @@ function App(props) {
     }
     localStorage.setItem("getList", JSON.stringify(newList));
     setList(newList);
-    onCloseForm();
-    setTodoEdit({
-      title: "",
-      status: "0",
-    });
   }
   function onDelete(id) {
     const index = list.findIndex((x) => x.id === id);
@@ -127,7 +116,7 @@ function App(props) {
       </div>
       <div className="row">
         {/* Form Add */}
-        {props.redux_toogle ? (
+        {toggle ? (
           <Add
             onSubmit={onSubmit}
             onCloseForm={onCloseForm}
@@ -161,9 +150,4 @@ function App(props) {
   );
 }
 
-const mapStateToProps = (state) => {
-  return {
-    redux_toogle:state.toogle,
-  };
-};
-export default connect(mapStateToProps, null)(App);
+export default App;
